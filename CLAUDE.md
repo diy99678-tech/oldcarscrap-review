@@ -17,6 +17,11 @@ Separate project (own folder, own git). Not part of any other project; do not mi
 - Tests: `node --test tests/*.test.mjs` (Node portable at D:\keshav\tools\node-v24.21.0-win-x64).
 - Git author: GitHub noreply, never the personal Gmail.
 
+## Hosting
+- GitHub Pages from public repo `diy99678-tech/oldcarscrap-review` (branch main, root): a push redeploys.
+  Live: https://diy99678-tech.github.io/oldcarscrap-review/ · QR stand: .../qr.html (print A6 / PDF).
+
 ## Status log
-- 2026-10-22 — Built: page, generator, QR stand, Supabase SQL. 5 tests pass. Not hosted yet (waiting for the
-  owner's choice of GitHub account / Supabase).
+- 2026-10-22 — Live on GitHub Pages (owner asked for the link). Supabase not set up yet (used texts are
+  remembered per phone only).
+- 2026-10-22 — Built: page, generator, QR stand, Supabase SQL. 5 tests pass.
