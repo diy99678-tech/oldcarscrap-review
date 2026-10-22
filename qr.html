@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>QR Stand</title>
+  <style>
+    :root { --accent: #f08a00; --ink: #1f2328; }
+    body { margin: 0; background: #eee; font: 16px/1.4 system-ui, "Segoe UI", Roboto, sans-serif; color: var(--ink); }
+    .tools { max-width: 520px; margin: 16px auto; padding: 0 16px; }
+    .tools input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font: inherit; box-sizing: border-box; }
+    .tools button { margin-top: 8px; padding: 10px 16px; border: 0; border-radius: 8px; background: var(--accent); color: #fff; font: inherit; font-weight: 700; }
+    .tools p { color: #666; font-size: 14px; }
+    .stand {
+      width: 105mm; min-height: 148mm; margin: 0 auto 24px; background: #fff; box-sizing: border-box;
+      padding: 9mm 8mm; text-align: center; border-radius: 4mm; border: 2.5mm solid var(--accent);
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .stand h1 { margin: 0; font-size: 26px; }
+    .stand .sub { margin: 2px 0 0; color: #555; font-size: 13px; }
+    .stand .ask { margin: 7mm 0 4mm; font-size: 21px; font-weight: 800; line-height: 1.25; }
+    .stand .stars { color: var(--accent); font-size: 30px; letter-spacing: 3px; }
+    #qr { margin: 4mm 0; padding: 3mm; background: #fff; }
+    #qr img, #qr canvas { width: 52mm !important; height: 52mm !important; }
+    .stand .step { font-size: 15px; margin: 2mm 0 0; }
+    .stand .addr { margin-top: auto; padding-top: 5mm; font-size: 11px; color: #666; }
+    @media print {
+      body { background: #fff; }
+      .tools { display: none; }
+      .stand { margin: 0 auto; page-break-after: always; }
+      @page { size: A6; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="tools">
+    <label for="url"><b>Review page ka link</b></label>
+    <input id="url" type="url">
+    <button type="button" onclick="window.print()">Print / PDF (A6)</button>
+    <p>QR scan karke check kar lo, phir print karo. Link badalna ho to upar badlo.</p>
+  </div>
+
+  <div class="stand">
+    <h1 id="name">oldcarscrap</h1>
+    <p class="sub" id="tag"></p>
+    <p class="ask">Humari service kaisi lagi?</p>
+    <div class="stars">★★★★★</div>
+    <div id="qr"></div>
+    <p class="step">📱 Camera se scan karo</p>
+    <p class="step">1 minute me Google review do 🙏</p>
+    <p class="addr" id="addr"></p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script type="module">
+    import { CONFIG } from "./js/config.js";
+    document.getElementById("name").textContent = CONFIG.name;
+    document.getElementById("tag").textContent = CONFIG.tagline;
+    document.getElementById("addr").textContent = CONFIG.address;
+    const input = document.getElementById("url");
+    input.value = new URL("./", location.href).href;
+    const box = document.getElementById("qr");
+    const draw = () => {
+      box.innerHTML = "";
+      new QRCode(box, { text: input.value.trim(), width: 600, height: 600, correctLevel: QRCode.CorrectLevel.M });
+    };
+    input.addEventListener("input", draw);
+    draw();
+  </script>
+</body>
+</html>
