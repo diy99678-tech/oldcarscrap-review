@@ -4,7 +4,7 @@ import { isUsed, markUsed } from "./used.js";
 
 const $ = (s) => document.querySelector(s);
 const LABELS = { 1: "Bahut kharab 😞", 2: "Accha nahi 😕", 3: "Theek-thaak 😐", 4: "Accha 🙂", 5: "Bahut badhiya! 🤩" };
-const REDIRECT_MS = 2600;
+const REDIRECT_MS = 4000; // time to read the three steps before Google opens
 
 const state = { stars: 0, vehicle: "car", conditions: [], good: [], bad: [], model: "" };
 let edited = false; // the customer typed in the box: never overwrite it silently
